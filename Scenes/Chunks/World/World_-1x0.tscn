@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Chunk.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ChunkSensors.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Maps/World_-1x0.png" type="Texture" id=3]
+
+[node name="Chunk-1x0" type="YSort"]
+
+sort_enabled = true
+script = ExtResource( 1 )
+index = Vector2( -1, 0 )
+
+[node name="ChunkSensors" parent="." index="0" instance=ExtResource( 2 )]
+
+right = true
+
+[node name="World_-1x0" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+
