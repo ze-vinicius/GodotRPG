@@ -14,6 +14,10 @@ config/name="GodotRPG"
 run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Inventory="*res://Scenes/Inventory.tscn"
+
 [display]
 
 window/size/width=400
