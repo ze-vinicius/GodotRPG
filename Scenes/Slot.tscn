@@ -75,6 +75,7 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 1
 custom_constants/shadow_offset_y = 1
+align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1

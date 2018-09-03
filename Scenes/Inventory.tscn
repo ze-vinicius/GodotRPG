@@ -53,16 +53,16 @@ margin_bottom = 100.0
 
 [node name="Slot3" parent="Slots" index="2" instance=ExtResource( 3 )]
 
-margin_left = 181.0
+margin_left = 182.0
 margin_top = 82.0
-margin_right = 199.0
+margin_right = 200.0
 margin_bottom = 100.0
 
 [node name="Slot4" parent="Slots" index="3" instance=ExtResource( 3 )]
 
-margin_left = 201.0
+margin_left = 202.0
 margin_top = 82.0
-margin_right = 219.0
+margin_right = 220.0
 margin_bottom = 100.0
 
 [node name="Slot5" parent="Slots" index="4" instance=ExtResource( 3 )]
@@ -85,5 +85,61 @@ margin_left = 161.0
 margin_top = 102.0
 margin_right = 179.0
 margin_bottom = 120.0
+
+[node name="Slot8" parent="Slots" index="7" instance=ExtResource( 3 )]
+
+margin_left = 182.0
+margin_top = 102.0
+margin_right = 200.0
+margin_bottom = 120.0
+
+[node name="Slot9" parent="Slots" index="8" instance=ExtResource( 3 )]
+
+margin_left = 202.0
+margin_top = 102.0
+margin_right = 220.0
+margin_bottom = 120.0
+
+[node name="Slot10" parent="Slots" index="9" instance=ExtResource( 3 )]
+
+margin_left = 222.0
+margin_top = 102.0
+margin_right = 240.0
+margin_bottom = 120.0
+
+[node name="Slot11" parent="Slots" index="10" instance=ExtResource( 3 )]
+
+margin_left = 141.0
+margin_top = 122.0
+margin_right = 159.0
+margin_bottom = 140.0
+
+[node name="Slot12" parent="Slots" index="11" instance=ExtResource( 3 )]
+
+margin_left = 161.0
+margin_top = 122.0
+margin_right = 179.0
+margin_bottom = 140.0
+
+[node name="Slot13" parent="Slots" index="12" instance=ExtResource( 3 )]
+
+margin_left = 182.0
+margin_top = 122.0
+margin_right = 200.0
+margin_bottom = 140.0
+
+[node name="Slot14" parent="Slots" index="13" instance=ExtResource( 3 )]
+
+margin_left = 202.0
+margin_top = 122.0
+margin_right = 220.0
+margin_bottom = 140.0
+
+[node name="Slot15" parent="Slots" index="14" instance=ExtResource( 3 )]
+
+margin_left = 222.0
+margin_top = 122.0
+margin_right = 240.0
+margin_bottom = 140.0
 
 
