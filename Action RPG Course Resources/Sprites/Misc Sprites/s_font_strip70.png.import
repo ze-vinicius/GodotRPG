@@ -1,0 +1,29 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/s_font_strip70.png-02aefb144735bdebd5d3cf3c0b8b913b.stex"
+
+[deps]
+
+source_file="res://Action RPG Course Resources/Sprites/Misc Sprites/s_font_strip70.png"
+dest_files=[ "res://.import/s_font_strip70.png-02aefb144735bdebd5d3cf3c0b8b913b.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0

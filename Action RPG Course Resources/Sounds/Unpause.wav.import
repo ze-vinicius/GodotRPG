@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Unpause.wav-fc1010f27b73aaaf2f0ce2f2ac8a685c.sample"
+
+[deps]
+
+source_file="res://Action RPG Course Resources/Sounds/Unpause.wav"
+dest_files=[ "res://.import/Unpause.wav-fc1010f27b73aaaf2f0ce2f2ac8a685c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

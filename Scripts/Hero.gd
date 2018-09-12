@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var walk_speed = 150
+#Velocidade de movimento do personagem
 
 var velocity = Vector2(0, 0)  # Vetor de velocidade
 
@@ -10,9 +11,12 @@ var facing = DOWN #indica para que lado o personagem está olhando.
 
 var switch_delta = Vector2(0, 0)
 
+var active_obj = null
+
 func _physics_process(delta):
 	
 	if switch_delta == Vector2(0, 0):
+		#Se o personagem estiver parado
 		var walk_left = Input.is_action_pressed("left")
 		var walk_right = Input.is_action_pressed("right")
 		var walk_up = Input.is_action_pressed("up")
@@ -32,26 +36,42 @@ func _physics_process(delta):
 		elif walk_down and position.y < 512:
 			velocity.y = walk_speed
 			facing = DOWN
+		#As condições acima verificam para que lado o personagem
+		#Está tentando andar e se o mesmo não atingiu o limite da chunk
+		#Seta também a variável "facing" para indicar a direção
+		#De movimento do personagem
+		
 	else:
 		velocity = switch_delta * walk_speed
-		## o walk speed é para caso o personagem esteja mudando de chunk, se ele tiver mudandod e chunk, não será possível controlar o movimento dele
+		
+		#O walk speed é para caso o personagem esteja 
+		#mudando de chunk, se ele tiver mudando de chunk, 
+		#não será possível controlar o movimento dele
 		
 	velocity = move_and_slide(velocity)
-	set_anim()
+	#Função base que movimenta o personagem de acordo com os valores
+	#em x e/ou y do Vetor
+	set_anim() #Seta a animação do personagem
 
 func set_anim():
+	var helm_ratio = Inventory.get_node("Equip").helm_ratio
+	"""
+		Faz as verificações da variável "facing" 
+		Seta a animação e o frame da cabeça para a direção
+		em que o personagem estiver virado
+	"""
 	if facing == RIGHT:
 		$AnimMove.current_animation = "right_walk" if velocity.x != 0 else "right_stand"
-		$Head.frame = 21
+		$Head.frame = 21 if helm_ratio == 1 else 20
 	elif facing == LEFT:
 		$AnimMove.current_animation = "left_walk" if velocity.x != 0 else "left_stand"
-		$Head.frame = 18
+		$Head.frame = 18 if helm_ratio == 1 else 19
 	elif facing == UP:
 		$AnimMove.current_animation = "up_walk" if velocity.y != 0 else "up_stand"
-		$Head.frame = 23
+		$Head.frame = 23 if helm_ratio == 1 else 22
 	elif facing == DOWN:
 		$AnimMove.current_animation = "down_walk" if velocity.y != 0 else "down_stand"
-		$Head.frame = 16
+		$Head.frame = 16 if helm_ratio == 1 else 17
 		
 func anim_switch(from, to):
 	switch_delta = to.index - from.index
@@ -65,7 +85,33 @@ func anim_switch(from, to):
 	
 	$SwitchTimer.start()
 	
+func pass_door(from, to, door):
+	switch_delta = door.out_dir
+	from.remove_child(self)
+	to.add_child(self)
+	
+	global_position = door.global_position
+	
+	$SwitchTimer.start()
+	
 	
 func _on_SwitchTimer_timeout():
+	#Timer de troca, para o personagem não ficar andando
+	#infinitamente
 	switch_delta = Vector2(0, 0)
 	get_parent().enter_chunk()
+	
+func activate(obj):
+	active_obj = obj
+
+func deactivate(obj):
+	active_obj = null
+	
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.scancode == KEY_SPACE and active_obj != null:
+			active_obj.use()
+	elif event is InputEventMouseButton and event.pressed:
+		if event.button_index == 1:
+			$AttackArea.attack(facing, Inventory.get_node("Equip").attack_force)
+

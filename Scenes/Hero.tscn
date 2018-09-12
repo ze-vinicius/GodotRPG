@@ -1,0 +1,373 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Scripts/Hero.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Hero/Personagens.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Camera.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AttackArea.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Hero/L.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Hero/L1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Hero/L2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Hero/Branco.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Hero/R.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Hero/R1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Hero/R2.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Hero/U.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Hero/U1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Hero/U2.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Hero/D.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Hero/D1.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Hero/D2.png" type="Texture" id=17]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 8.0
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "down_stand"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "down_walk"
+length = 0.6
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "left_stand"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "left_walk"
+length = 0.6
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 4, 5 ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource_name = "right_stand"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=7]
+
+resource_name = "right_walk"
+length = 0.6
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 7, 8 ]
+}
+
+[sub_resource type="Animation" id=8]
+
+resource_name = "up_stand"
+length = 0.1
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 11 ]
+}
+
+[sub_resource type="Animation" id=9]
+
+resource_name = "up_walk"
+length = 0.6
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 9, 10 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=10]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.0
+
+[sub_resource type="SpriteFrames" id=11]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "Left",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "Right",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "Up",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "Down",
+"speed": 10.0
+} ]
+
+[node name="Hero" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="body" type="Sprite" parent="." index="0"]
+
+position = Vector2( 0, -18.5 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+hframes = 25
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="Head" type="Sprite" parent="." index="1"]
+
+position = Vector2( 0, -18.5 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 2 )
+hframes = 25
+frame = 20
+_sections_unfolded = [ "Animation", "Transform" ]
+
+[node name="Shape" type="CollisionShape2D" parent="." index="2"]
+
+visible = false
+shape = SubResource( 1 )
+
+[node name="AnimMove" type="AnimationPlayer" parent="." index="3"]
+
+root_node = NodePath("..")
+autoplay = "down_stand"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/down_stand = SubResource( 2 )
+anims/down_walk = SubResource( 3 )
+anims/left_stand = SubResource( 4 )
+anims/left_walk = SubResource( 5 )
+anims/right_stand = SubResource( 6 )
+anims/right_walk = SubResource( 7 )
+anims/up_stand = SubResource( 8 )
+anims/up_walk = SubResource( 9 )
+blend_times = [  ]
+
+[node name="Camera" type="Camera2D" parent="." index="4"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = 0
+limit_top = 0
+limit_right = 512
+limit_bottom = 512
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+script = ExtResource( 3 )
+_sections_unfolded = [ "Limit" ]
+
+[node name="SwitchTimer" type="Timer" parent="." index="5"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
+[node name="AttackArea" type="Node2D" parent="." index="6"]
+
+script = ExtResource( 4 )
+
+[node name="Up" type="Area2D" parent="AttackArea" index="0"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Shape" type="CollisionShape2D" parent="AttackArea/Up" index="0"]
+
+position = Vector2( 1.16225, -21.5017 )
+rotation = 1.5708
+shape = SubResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Down" type="Area2D" parent="AttackArea" index="1"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Shape" type="CollisionShape2D" parent="AttackArea/Down" index="0"]
+
+position = Vector2( 1.16225, 11.9131 )
+rotation = 1.5708
+shape = SubResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Left" type="Area2D" parent="AttackArea" index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Shape" type="CollisionShape2D" parent="AttackArea/Left" index="0"]
+
+position = Vector2( -20, -5 )
+shape = SubResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Right" type="Area2D" parent="AttackArea" index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Shape" type="CollisionShape2D" parent="AttackArea/Right" index="0"]
+
+position = Vector2( 22, -5 )
+shape = SubResource( 10 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sword" type="AnimatedSprite" parent="AttackArea" index="4"]
+
+position = Vector2( 0, -18.5 )
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 11 )
+animation = "Down"
+frame = 3
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="timeout" from="SwitchTimer" to="." method="_on_SwitchTimer_timeout"]
+
+

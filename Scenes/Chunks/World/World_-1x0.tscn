@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Chunk.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ChunkSensors.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Maps/World_-1x0.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=4]
 
 [node name="Chunk-1x0" type="YSort"]
 
@@ -19,5 +20,13 @@ right = true
 texture = ExtResource( 3 )
 centered = false
 _sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Door1" parent="." index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 160, 300 )
+to_world = "World"
+to_index = Vector2( 0, 0 )
+to_door = 1
+out_dir = Vector2( 0, 1 )
 
 

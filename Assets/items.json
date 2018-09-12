@@ -1,0 +1,22 @@
+{
+  "items": {
+    "5": {
+      "max_slot": 8,
+      "Info": "Pedra preciosa"
+    },
+    "13": {
+      "max_slot": 1,
+      "Info": "Chave dourada"
+    },
+    "20": {
+      "max_slot": 1.0,
+      "Info": "Espada amaldiçoada",
+      "damage": 1
+    },
+    "43": {
+    	"max_slot": 1,
+    	"Info": "capacete do satan",
+    	"defense": 0.5
+    }
+  }
+}

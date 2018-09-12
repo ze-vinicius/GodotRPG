@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Porcupine Attack.wav-1c8cc16b83b2fe49bc49957ccf1ffacb.sample"
+
+[deps]
+
+source_file="res://Action RPG Course Resources/Sounds/Porcupine Attack.wav"
+dest_files=[ "res://.import/Porcupine Attack.wav-1c8cc16b83b2fe49bc49957ccf1ffacb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

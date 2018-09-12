@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Chest.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Chest/1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Chest/2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Chest/3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Chest/4.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "open",
+"speed": 6.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 14, 5 )
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 30.0
+
+[node name="Chest" type="StaticBody2D"]
+
+position = Vector2( 178, 107 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+id = 20
+qty = 1
+uid = 0
+
+[node name="Sprite" type="AnimatedSprite" parent="." index="0"]
+
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 1 )
+animation = "open"
+_sections_unfolded = [ "Transform" ]
+
+[node name="shape" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 1, 8 )
+shape = SubResource( 2 )
+
+[node name="ActiveArea" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="Shape" type="CollisionShape2D" parent="ActiveArea" index="0"]
+
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="ActiveArea" to="." method="_on_ActiveArea_body_entered"]
+
+[connection signal="body_exited" from="ActiveArea" to="." method="_on_ActiveArea_body_exited"]
+
+

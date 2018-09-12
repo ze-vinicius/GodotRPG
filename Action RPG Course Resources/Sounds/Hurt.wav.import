@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Hurt.wav-05a42ad6c89c4ea1a954d7562dfb4047.sample"
+
+[deps]
+
+source_file="res://Action RPG Course Resources/Sounds/Hurt.wav"
+dest_files=[ "res://.import/Hurt.wav-05a42ad6c89c4ea1a954d7562dfb4047.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

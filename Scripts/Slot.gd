@@ -2,14 +2,24 @@ extends Panel
 
 var Transaction = preload("res://Scenes/Transaction.tscn") # pre-carrega a cena Transaction
 
+enum types {MIXED, OUT, FILTER, TRASH}
+export (types) var type = MIXED
+export (Array) var filter = []
 var id = null
 var qty = 0
 var uid = null
 
+
+signal changed()
+
 func store(trans):
-	
 	var all_done = true
 	
+	if type == TRASH:
+		#Para slots de lixo, tudo que colocarmos aqui será destruído
+		trans = []
+		return true
+
 	var i = 0 #quantidade de itens na transaction
 	
 	while i != trans.size():
@@ -70,14 +80,16 @@ func update_info():
 		$Number.show()
 	else:
 		$Number.hide()
+		
+	emit_signal("changed")
 
 func _input(event):
 	"""Está função serve para pegar o evento de click do mouse"""
 	if event is InputEventMouseButton and event.pressed and post_inside(event.position):
 		"""Verifica se o evento é um click do mouse e se ele está apenas clicando e
 		também se está clicando dentro do espaço do slot"""
-		if Inventory.is_idle():
-			# retirar itens
+		if Inventory.is_idle() and Inventory.open:
+			# Se está no estado de "retirar itens
 			if id == null: return 
 			#Se o id é null, ou seja se o slot está vazio
 			#Nada acontece
@@ -100,37 +112,67 @@ func _input(event):
 				new_trans.init(id, qty/2, uid) # caso tenha números ímpares
 				qty -= qty/2
 			
-			Inventory.set_trans(new_trans)
+			if Input.is_key_pressed(KEY_SHIFT):
+				Inventory.store([new_trans])
+			else:
+				Inventory.set_trans(new_trans)
 			
 			update_info() # atualiza as informações, ou seja, se tiver item e clicar, ele vai sumir
 		elif Inventory.is_trans():
-			"""Se já há uma transação ocorrendo"""
+			
+			if type == OUT or type == FILTER and not filter.has(Inventory.cur_trans.id):
+				return
+			
+			"""
+				Se já há uma transação ocorrendo
+			"""
 			if event.button_index == 1:
-				
+				#Se o botão é o esquerdo do mouser
 				if id != null and Inventory.cur_trans.id != id:
+					#Se o inventário já tiver algum item
+					#que é diferente do item transferido
 					var new_trans = Transaction.instance()
+					#Instancia uma nova transação
 					new_trans.init(id, qty, uid)
-					
+					#Inicia uma transação (item)
 					id = null
 					qty = 0
 					uid = null
+					#Esvazia o slot atual
 					
 					store([Inventory.cur_trans])
+					#Deposita o item transferido no slot atual
 					Inventory.set_trans(new_trans)
+					#Pega o item que estava no slot e transforma
+					#Em transação
 				
 				else:
+					#Caso o slot esteja vazio
 					if store([Inventory.cur_trans]):
 						Inventory.set_idle()
+						#Deposita o item e seta em estado de 
+						#retirada
+						
 					
 			else:
+				#Se for um click com o botão direito
 				var cur_trans = Inventory.cur_trans
 				
 				if cur_trans.qty > 1:
+					"""
+						Se a quantidade do item for maior que 1
+						Quando clicar no local, instancia uma nova transação
+						com uma unidade e põe no slot
+					"""
 					var new_trans = Transaction.instance()
 					new_trans.init(cur_trans.id, 1, cur_trans.uid)
 					
 					if store([new_trans]):
 						cur_trans.qty -= 1
-						
+	elif event is InputEventMouseMotion:
+		if post_inside(get_viewport().get_mouse_position()):
+			Inventory.set_info(id)
+			
 func post_inside(pos):
+	#Verifica se o mouse está clicando dentro do slot
 	return get_global_rect().has_point(pos)

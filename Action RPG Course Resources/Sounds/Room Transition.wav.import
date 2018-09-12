@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Room Transition.wav-2c40fe82eb511a26b45da609deff9c9c.sample"
+
+[deps]
+
+source_file="res://Action RPG Course Resources/Sounds/Room Transition.wav"
+dest_files=[ "res://.import/Room Transition.wav-2c40fe82eb511a26b45da609deff9c9c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
